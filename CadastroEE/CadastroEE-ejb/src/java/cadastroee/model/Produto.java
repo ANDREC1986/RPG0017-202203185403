@@ -16,7 +16,6 @@ import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Collection;
 
 /**
@@ -31,6 +30,7 @@ import java.util.Collection;
     @NamedQuery(name = "Produto.findByNome", query = "SELECT p FROM Produto p WHERE p.nome = :nome"),
     @NamedQuery(name = "Produto.findByQuantidade", query = "SELECT p FROM Produto p WHERE p.quantidade = :quantidade"),
     @NamedQuery(name = "Produto.findByPrecoDeVenda", query = "SELECT p FROM Produto p WHERE p.precoDeVenda = :precoDeVenda")})
+
 public class Produto implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,7 +48,7 @@ public class Produto implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
     @Column(name = "preco_de_venda")
-    private BigDecimal precoDeVenda;
+    private Float precoDeVenda;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProduto")
     private Collection<Movimento> movimentoCollection;
 
@@ -59,7 +59,7 @@ public class Produto implements Serializable {
         this.idProduto = idProduto;
     }
 
-    public Produto(Integer idProduto, String nome, int quantidade, BigDecimal precoDeVenda) {
+    public Produto(Integer idProduto, String nome, int quantidade, Float precoDeVenda) {
         this.idProduto = idProduto;
         this.nome = nome;
         this.quantidade = quantidade;
@@ -90,11 +90,11 @@ public class Produto implements Serializable {
         this.quantidade = quantidade;
     }
 
-    public BigDecimal getPrecoDeVenda() {
+    public Float getPrecoDeVenda() {
         return precoDeVenda;
     }
 
-    public void setPrecoDeVenda(BigDecimal precoDeVenda) {
+    public void setPrecoDeVenda(Float precoDeVenda) {
         this.precoDeVenda = precoDeVenda;
     }
 

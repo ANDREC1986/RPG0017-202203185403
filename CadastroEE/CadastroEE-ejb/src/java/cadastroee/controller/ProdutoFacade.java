@@ -27,5 +27,5 @@ public class ProdutoFacade extends AbstractFacade<Produto> implements ProdutoFac
     public ProdutoFacade() {
         super(Produto.class);
     }
-    
+   
 }
